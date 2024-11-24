@@ -1,0 +1,111 @@
+.dashboard-container {
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.create-playlist-card,
+.playlist-card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    background: #f9f9f9;
+}
+
+.create-playlist-symbol {
+    font-size: 2rem;
+    color: #666;
+}
+
+.edit-button {
+    float: right;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.edit-input {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.create-button,
+.cancel-button {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #f9f9f9;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+}
+
+.create-button:hover,
+.cancel-button:hover {
+    background: #eee;
+}
+
+.playlist-header,
+.playlist-content {
+    margin-bottom: 0.5rem;
+}
