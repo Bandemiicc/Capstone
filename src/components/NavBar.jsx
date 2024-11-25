@@ -12,9 +12,6 @@ const Navbar = () => {
                 <Link to="/song-list">
                     <Button className="bg-white text-indigo-600">Song List</Button>
                 </Link>
-                <Link to="/add">
-                    <Button className="bg-white text-indigo-600">Add Song</Button>
-                </Link>
                 <Link to="/create-playlist">
                     <Button className="bg-white text-indigo-600">Create Playlist</Button>
                 </Link>

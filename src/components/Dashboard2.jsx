@@ -5,16 +5,13 @@ import { Input } from "./ui/input"; // ShadCN Input
 import { Button } from "./ui/button"; // ShadCN Button
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard2 = () => {
     const [playlists, setPlaylists] = useState([]);
     const [isCreating, setIsCreating] = useState(false);
     const [newPlaylist, setNewPlaylist] = useState({ name: "", description: "" });
     const [editingPlaylistId, setEditingPlaylistId] = useState(null);
-    const [editedPlaylist, setEditedPlaylist] = useState({});
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchPlaylists = async () => {
+ const fetchPlaylists = async () => {
             try {
                 const response = await axios.get("http://localhost:4000/playlists");
                 setPlaylists(response.data);
@@ -22,7 +19,8 @@ const Dashboard = () => {
                 console.error("Error fetching playlists:", err);
             }
         };
-
+   
+    useEffect(() => {
         fetchPlaylists();
     }, []);
 
@@ -41,6 +39,7 @@ const Dashboard = () => {
 
     const handleEdit = async (playlistId) => {
         try {
+          
             const response = await axios.put(
                 `http://localhost:4000/playlists/${playlistId}`,
                 editedPlaylist
@@ -101,7 +100,7 @@ const Dashboard = () => {
                                     <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white">
                                         Save
                                     </Button>
-                                    <Button
+                                    <Button 
                                         variant="outline"
                                         onClick={() => navigate(`/add-songs/${playlist._id}`)}
                                         className="w-full bg-gray-700 hover:bg-gray-600 text-white"
@@ -130,9 +129,16 @@ const Dashboard = () => {
                                         Edit
                                     </Button>
                                     <Button
+                                    variant="outline"
+                                        size="sm"
+                                        onClick={() => navigate(`/playlist/${playlist._id}/songs`)}
+                                        className="bg-gray-700 hover:bg-gray-600 text-white"
+                                    >View Songs
+                                    </Button>
+                                    <Button
                                         variant="outline"
                                         size="sm"
-                                        onClick={() => navigate(`/add-songs/${playlist._id}`)}
+                                        onClick={() => navigate(`/playlist/${playlist._id}`)}
                                         className="bg-gray-700 hover:bg-gray-600 text-white"
                                     >
                                         Add Songs
@@ -186,4 +192,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Dashboard2;

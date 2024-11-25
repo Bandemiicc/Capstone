@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, CardContent } from './ui/card'; 
-import { Button } from './ui/button'; 
+import { Card, CardContent } from './ui/card';
+import { Button } from './ui/button';
 
 const SongList = () => {
   const [songs, setSongs] = useState([]);
@@ -18,7 +18,8 @@ const SongList = () => {
         const response = await axios.get('http://localhost:4000/songs');
         setSongs(response.data);
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching songs:', error);
+        alert('Failed to load songs. Please try again later.');
       }
     };
     fetchSongs();
@@ -28,10 +29,10 @@ const SongList = () => {
     try {
       await axios.delete(`http://localhost:4000/songs/${id}`);
       setSongs(songs.filter((song) => song._id !== id));
-      alert('Song deleted!');
+      alert('Song deleted successfully!');
     } catch (error) {
-      console.error(error);
-      alert('Failed to delete song.');
+      console.error('Error deleting song:', error);
+      alert('Failed to delete song. Please try again.');
     }
   };
 
@@ -49,28 +50,32 @@ const SongList = () => {
       setSongs(songs.map((song) => (song._id === id ? response.data : song)));
       setUpdatedSong({ title: '', artist: '', album: '' });
       setEditingSongId(null);
-      alert('Song updated!');
+      alert('Song updated successfully!');
     } catch (error) {
       console.error('Failed to update song:', error);
-      alert('Failed to update song.');
+      alert('Failed to update song. Please try again.');
     }
   };
 
   return (
-    <div className="mt-6 p-6">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Song List</h2>
+    <div className="mt-6 p-6 bg-gray-900 text-gray-100 min-h-screen">
+      <h2 className="text-2xl font-semibold text-white mb-6">Song List</h2>
       <div className="space-y-4">
         {songs.map((song) => (
-          <Card key={song._id} className="shadow-md">
+          <Card
+            key={song._id}
+            className="shadow-md bg-gray-800 text-white border border-gray-700"
+          >
             <CardContent className="flex items-center justify-between">
               <div>
                 <p className="font-medium">{song.title}</p>
-                <p className="text-sm text-gray-600">{song.artist}</p>
+                <p className="text-sm text-gray-400">{song.artist}</p>
               </div>
               <div className="flex space-x-4">
                 <Button
                   variant="destructive"
                   onClick={() => deleteSong(song._id)}
+                  className="bg-red-600 text-white hover:bg-red-700"
                 >
                   Delete
                 </Button>
@@ -84,6 +89,7 @@ const SongList = () => {
                       album: song.album,
                     });
                   }}
+                  className="bg-blue-600 text-white hover:bg-blue-700"
                 >
                   Update
                 </Button>
@@ -93,7 +99,7 @@ const SongList = () => {
         ))}
       </div>
       {editingSongId && (
-        <Card className="mt-6">
+        <Card className="mt-6 bg-gray-800 text-white border border-gray-700">
           <CardContent>
             <h3 className="text-lg font-medium mb-4">Update Song</h3>
             <div className="grid grid-cols-1 gap-4">
@@ -103,7 +109,7 @@ const SongList = () => {
                 placeholder="Title"
                 value={updatedSong.title}
                 onChange={handleUpdateInputChange}
-                className="w-full p-3 border rounded-lg focus:outline-none"
+                className="w-full p-3 border rounded-lg focus:outline-none bg-gray-700 text-white placeholder-gray-400"
               />
               <input
                 type="text"
@@ -111,7 +117,7 @@ const SongList = () => {
                 placeholder="Artist"
                 value={updatedSong.artist}
                 onChange={handleUpdateInputChange}
-                className="w-full p-3 border rounded-lg focus:outline-none"
+                className="w-full p-3 border rounded-lg focus:outline-none bg-gray-700 text-white placeholder-gray-400"
               />
               <input
                 type="text"
@@ -119,18 +125,20 @@ const SongList = () => {
                 placeholder="Album"
                 value={updatedSong.album}
                 onChange={handleUpdateInputChange}
-                className="w-full p-3 border rounded-lg focus:outline-none"
+                className="w-full p-3 border rounded-lg focus:outline-none bg-gray-700 text-white placeholder-gray-400"
               />
               <div className="flex justify-end space-x-4">
                 <Button
                   variant="secondary"
                   onClick={() => setEditingSongId(null)}
+                  className="bg-gray-600 text-white hover:bg-gray-700"
                 >
                   Cancel
                 </Button>
                 <Button
                   variant="success"
                   onClick={() => updateSong(editingSongId)}
+                  className="bg-green-600 text-white hover:bg-green-700"
                 >
                   Save Changes
                 </Button>
