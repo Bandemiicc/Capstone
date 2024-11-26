@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 const SongList = () => {
   const [songs, setSongs] = useState([]);
   const [updatedSong, setUpdatedSong] = useState({
-    title: '',
+    name: '',
     artist: '',
     album: '',
   });
@@ -49,7 +49,6 @@ const SongList = () => {
         updatedSong
       );
       setSongs(songs.map((song) => (song._id === id ? response.data : song)));
-      setUpdatedSong({ title: '', artist: '', album: '' });
       setEditingSongId(null);
       alert('Song updated successfully!');
     } catch (error) {
@@ -65,12 +64,13 @@ const SongList = () => {
         {songs.map((song) => (
           <Card
             key={song._id}
-            className="shadow-md bg-gray-800 text-white border border-gray-700"
+            className="shadow-md bg-gray-800 text-white border border-gray-700 p-4"
           >
-            <CardContent className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">{song.title}</p>
-                <p className="text-sm text-gray-400">{song.artist}</p>
+            <CardContent>
+              <div className="mb-4">
+                <p className="text-xl font-bold">{song.name}</p>
+                <p className="text-sm text-gray-400">Artist: {song.artist}</p>
+                <p className="text-sm text-gray-400">Album: {song.album}</p>
               </div>
               <div className="flex space-x-4">
                 <Button
@@ -85,7 +85,7 @@ const SongList = () => {
                   onClick={() => {
                     setEditingSongId(song._id);
                     setUpdatedSong({
-                      title: song.title,
+                      title: song.name,
                       artist: song.artist,
                       album: song.album,
                     });
@@ -108,7 +108,7 @@ const SongList = () => {
                 type="text"
                 name="title"
                 placeholder="Title"
-                value={updatedSong.title}
+                value={updatedSong.name}
                 onChange={handleUpdateInputChange}
                 className="w-full p-3 border rounded-lg focus:outline-none bg-gray-700 text-white placeholder-gray-400"
               />
