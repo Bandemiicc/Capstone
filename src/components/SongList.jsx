@@ -106,7 +106,7 @@ const SongList = () => {
             <div className="grid grid-cols-1 gap-4">
               <input
                 type="text"
-                name="title"
+                name="name"
                 placeholder="Title"
                 value={updatedSong.name}
                 onChange={handleUpdateInputChange}
