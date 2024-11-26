@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a full-stack **playlist manager** where users can create, manage, and share playlists with their favorite songs. The app combines the power of the **MERN** stack (MongoDB, Express, React, Node.js) with **Tailwind CSS** for styling and **Shadcn** for UI components. While it currently supports basic playlist management features, I originally envisioned it as a **Spotify clone** with some cool added features.
+This is a full-stack **playlist manager** where users can create, manage, and share playlists with their favorite songs. The app combines the power of the **MERN** stack (MongoDB, Express, React, Node.js) with **Tailwind CSS** for styling and **Shadcn** for UI components. While it currently supports basic playlist management features, I originally envisioned it as a **Spotify clone** with some cool added features. To check out the backend repo, visit: "https://github.com/Bandemiicc/Capstone-Server".
 
 ---
 
@@ -82,8 +82,6 @@ To run this app locally, follow these steps:
     ```bash
     npm start
     ```
-
-4. Visit `http://localhost:3000` in your browser to check out the app!
 
 ---
 
